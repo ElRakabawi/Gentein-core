@@ -1,2 +1,2 @@
-# Genojo
-A mojolicious perl app for bioinformaticians
+# Gentein
+A DNA sequence to Protein translator tool, Built on Mojolicious and AngularJS.
