@@ -1,7 +1,6 @@
 #!/usr/bin/perl
 use Mojolicious::Lite;
-use Term::ANSIColor;
-
+#use Term::ANSIColor;
 
 my(%genetic_code) = (
 
@@ -113,7 +112,7 @@ my(%genetic_code) = (
 );
 
 #Storing the user DNA sequence
-print "Enter your DNA Sequence: \n";
+print "Enter you DNA Sequence: \n";
 my $entry = <STDIN>;
 chomp $entry;
 my $dna = uc($entry);
