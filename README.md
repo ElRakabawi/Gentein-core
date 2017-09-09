@@ -1,7 +1,7 @@
 # Gentein
 A DNA to Protein sequence [six-frame translation](https://en.wikipedia.org/wiki/Open_reading_frame#Six-frame_translation) tool in Perl.
 <br  >
-![](http://i.imgur.com/oWjes8m.jpg)
+![](http://i.imgur.com/R7TkAbI.jpg)
 <br  >
 
 ## Installation
