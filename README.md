@@ -7,7 +7,7 @@ A DNA to Protein sequence [six-frame translation](https://en.wikipedia.org/wiki/
 ## Installation
 * clone the repo using `git clone https://github.com/ElRakabawi/Gentein.git`
 * access the file with `cd Gentein`
-* Run the program with `perl core.pl`
+* Run the program with `perl gentein.pl`
 
 <br />
 This project is licensed under the terms of the MIT license.
