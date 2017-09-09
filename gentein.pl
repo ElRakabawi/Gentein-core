@@ -1,5 +1,6 @@
 #!/usr/bin/perl
-use Mojolicious::Lite;
+use strict;
+use warnings;
 use Term::ANSIColor;
 
 my(%genetic_code) = (
