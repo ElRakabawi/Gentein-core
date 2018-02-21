@@ -112,13 +112,31 @@ my(%genetic_code) = (
 'TGA' => 'STOP',
 );
 
-#Storing the user DNA sequence
+#Storing the user DNA/mRNA sequence
 print "Enter you DNA Sequence: \n";
 my $entry = <STDIN>;
 chomp $entry;
 my $dna = uc($entry);
 my $len = length($dna);
 
+
+#Checking if the sequence is mRNA and detranslation of it back to DNA
+my $mRNA_det = 0;
+for(my $i=0; $i<$len; $i++){
+  my $nucleic_base = substr($dna, $i, 1);
+  if($nucleic_base eq 'U'){
+    $mRNA_det = 1;
+  }
+}
+
+if($mRNA_det == 1){
+  print color("GREEN"), "\nThe sequence detected is mRNA .. converting to DNA!\n", color("RESET");
+  $dna =~ tr/U/T/;
+  print "The new DNA sequence is: $dna\n";
+}
+else {
+  print color("GREEN"), "\nThe sequence detected is DNA!\n", color("RESET");
+}
 
 #Initiation of protein sequence
 my $protein = '';
