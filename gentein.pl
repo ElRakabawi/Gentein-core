@@ -239,3 +239,30 @@ for(my $i=2; $i<$len - 2; $i+=3){
 }
 print color("GREEN"), "\n 3'5' Frame 3\n", color("RESET");
 print "$Fthree_rev\n";
+
+
+#Function for detection of ORFs within the amino acid sequence
+sub orf_detect {
+  my ($entry) = @_;
+  my $len = length($entry);
+  my @possib_arr;
+  my @orfs;
+
+  for(my $i=0; $i<$len; $i++){
+    my $nucleic_base = substr($entry, $i, 3);
+    if($nucleic_base eq 'Met'){
+        my $possib_match = substr($entry, $i, $len-$i);
+        push @possib_arr, $possib_match;
+      }
+  }
+
+  my $arr_len = scalar(@possib_arr);
+  for(my $i=0; $i<$arr_len; $i++){
+    if($possib_arr[$i] =~ m/((?=Met\*?).*?STOP)/){
+      $possib_arr[$i] = $1;
+      my $temp_chuck = $possib_arr[$i];
+      push @orfs, $temp_chuck;
+    }
+  }
+  return @orfs;
+}
