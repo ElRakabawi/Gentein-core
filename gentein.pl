@@ -120,7 +120,7 @@ my $dna = uc($entry);
 my $len = length($dna);
 
 
-#Checking if the sequence is mRNA and detranslation of it back to DNA
+#Detection of mRNA presence and detranslation of it back to DNA
 my $mRNA_det = 0;
 for(my $i=0; $i<$len; $i++){
   my $nucleic_base = substr($dna, $i, 1);
