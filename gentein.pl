@@ -120,13 +120,22 @@ ASKTHEUSER:
 print "Do you want to generate a psuedo-random DNA? Enter (Y) for DNA Generation or (N) to import your sequence\n";
 my $userChoice = <STDIN>;
 chomp $userChoice;
+my $baseLen = 1;
 
 if($userChoice eq 'Y' || $userChoice eq 'y'){
-  print "Enter size of DNA i.e (100): ";
-  my $baseLen = <STDIN>;
+  ASKFORSIZE:
+  print "Enter size of DNA: ";
+  $baseLen = <STDIN>;
   chomp $baseLen;
-  for(my $i=0; $i<$baseLen; $i++){
-    $GenDNA .= $bases[rand @bases];
+  if($baseLen <= 9){
+    print "Size must be larger than 9\n";
+    goto ASKFORSIZE;
+  }
+  else {
+    for(my $i=0; $i<$baseLen; $i++){
+      $GenDNA .= $bases[rand @bases];
+    }
+    print "Your generated DNA has a length of ($baseLen) and is: \n$GenDNA\n";
   }
 }
 elsif($userChoice eq 'N' || $userChoice eq 'n'){
@@ -140,9 +149,15 @@ else {
 
 START:
 #Storing the user DNA/mRNA sequence
-print "Enter you DNA Sequence: \n";
-my $entry = <STDIN>;
-chomp $entry;
+my $entry;
+if($baseLen > 9){
+  $entry = $GenDNA;
+}
+else {
+  print "Enter you DNA Sequence: \n";
+  $entry = <STDIN>;
+  chomp $entry;
+}
 my $dna = uc($entry);
 my $len = length($dna);
 
