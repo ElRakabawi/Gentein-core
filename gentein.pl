@@ -112,6 +112,33 @@ my(%genetic_code) = (
 'TGA' => 'STOP',
 );
 
+#Psuedorandom generation of DNA upon user choice
+my @bases = ("A","T","C","G");
+my $GenDNA;
+
+ASKTHEUSER:
+print "Do you want to generate a psuedo-random DNA? Enter (Y) for DNA Generation or (N) to import your sequence\n";
+my $userChoice = <STDIN>;
+chomp $userChoice;
+
+if($userChoice eq 'Y' || $userChoice eq 'y'){
+  print "Enter size of DNA i.e (100): ";
+  my $baseLen = <STDIN>;
+  chomp $baseLen;
+  for(my $i=0; $i<$baseLen; $i++){
+    $GenDNA .= $bases[rand @bases];
+  }
+}
+elsif($userChoice eq 'N' || $userChoice eq 'n'){
+  goto START;
+}
+else {
+  print "Please enter a right choice! \n";
+  goto ASKTHEUSER;
+}
+
+
+START:
 #Storing the user DNA/mRNA sequence
 print "Enter you DNA Sequence: \n";
 my $entry = <STDIN>;
