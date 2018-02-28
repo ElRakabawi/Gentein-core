@@ -160,6 +160,7 @@ else {
 }
 my $dna = uc($entry);
 my $len = length($dna);
+my $ORFs_counter = 0; #Counter for ORFs
 
 
 #Detection of mRNA presence and detranslation of it back to DNA
@@ -198,6 +199,7 @@ print "$Fone\n";
 
 my @test_arr_one = orf_detect($Fone);
 my $itr_len_one = scalar(@test_arr_one);
+$ORFs_counter += $itr_len_one;
 print color("RED"), "\n Number of ORFs: $itr_len_one\n", color("RESET");
 for(my $j=0; $j<$itr_len_one; $j++){
   print "($j) $test_arr_one[$j]\n";
@@ -218,6 +220,7 @@ print "$Ftwo\n";
 
 my @test_arr_two = orf_detect($Ftwo);
 my $itr_len_two = scalar(@test_arr_two);
+$ORFs_counter += $itr_len_two;
 print color("RED"), "\n Number of ORFs: $itr_len_two\n", color("RESET");
 for(my $j=0; $j<$itr_len_two; $j++){
   print "($j) $test_arr_two[$j]\n";
@@ -238,6 +241,7 @@ print "$Fthree\n";
 
 my @test_arr_three = orf_detect($Fthree);
 my $itr_len_three = scalar(@test_arr_three);
+$ORFs_counter += $itr_len_three;
 print color("RED"), "\n Number of ORFs: $itr_len_three\n", color("RESET");
 for(my $j=0; $j<$itr_len_three; $j++){
   print "($j) $test_arr_three[$j]\n";
@@ -279,6 +283,7 @@ print "$Fone_rev\n";
 
 my @test_arr_one_rev = orf_detect($Fone_rev);
 my $itr_len_one_rev = scalar(@test_arr_one_rev);
+$ORFs_counter += $itr_len_one_rev;
 print color("RED"), "\n Number of ORFs: $itr_len_one_rev\n", color("RESET");
 for(my $j=0; $j<$itr_len_one_rev; $j++){
   print "($j) $test_arr_one_rev[$j]\n";
@@ -299,6 +304,7 @@ print "$Ftwo_rev\n";
 
 my @test_arr_two_rev = orf_detect($Ftwo_rev);
 my $itr_len_two_rev = scalar(@test_arr_two_rev);
+$ORFs_counter += $itr_len_two_rev;
 print color("RED"), "\n Number of ORFs: $itr_len_two_rev\n", color("RESET");
 for(my $j=0; $j<$itr_len_two_rev; $j++){
   print "($j) $test_arr_two_rev[$j]\n";
@@ -318,10 +324,13 @@ print "$Fthree_rev\n";
 
 my @test_arr_three_rev = orf_detect($Fthree_rev);
 my $itr_len_three_rev = scalar(@test_arr_three_rev);
+$ORFs_counter += $itr_len_three_rev;
 print color("RED"), "\n Number of ORFs: $itr_len_three_rev\n", color("RESET");
 for(my $j=0; $j<$itr_len_three_rev; $j++){
   print "($j) $test_arr_three_rev[$j]\n";
 }
+
+print color("BLUE"), "Total number of ORFs in this sequence is $ORFs_counter\n", color("RESET");;
 
 #Function for detection of ORFs within the amino acid sequence
 sub orf_detect {
