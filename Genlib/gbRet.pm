@@ -1,8 +1,8 @@
 #!/usr/bin/perl
 
 # Author: Muhammed S. ElRakabawi (elrakabawi.github.io)
-# This 
-package Gentein::gbRet;
+# gbRet is a GenBank retrieval module for Gentein Translator
+package Genlib::gbRet;
 
 use warnings;
 use strict; 
@@ -18,7 +18,7 @@ sub retrieve(){
 	my $sequence = $seq1 -> seq;
 
 	for my $feat ($seq1 -> get_SeqFeatures){
-	  if ($feat -> primary_tag eq 'CDS'){ # Cheching for CDS info
+	  if ($feat -> primary_tag eq 'CDS'){ # Checking for CDS info
 	    print $feat -> get_tag_values('gene'),"\n";
 	    
 	    my $start = $feat->start;
@@ -27,8 +27,8 @@ sub retrieve(){
 	    use Text::Wrap;
 	    $Text::Wrap::columns = 71; #FASTA
 	    print wrap('', '', $cds, "\n");
+
+	    return $cds;
 	  }
 	}
 }
-
-retrieve();

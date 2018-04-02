@@ -3,6 +3,8 @@ use strict;
 use warnings;
 use Term::ANSIColor;
 
+use Genlib::gbRet;
+
 my(%genetic_code) = (
 
 #Phenylalanine
@@ -115,14 +117,15 @@ my(%genetic_code) = (
 #Psuedorandom generation of DNA upon user choice
 my @bases = ("A","T","C","G");
 my $GenDNA;
+my $entry;
 
 ASKTHEUSER:
-print "Do you want to generate a psuedo-random DNA? Enter (Y) for DNA Generation or (N) to import your sequence\n";
+print "Enter (G) for translating a sequence from GenBank using it's Accession number\nEnter (T) for translating your own sequence\nEnter (R) for generating a Random DNA sequence\n";
 my $userChoice = <STDIN>;
 chomp $userChoice;
 my $baseLen = 1;
 
-if($userChoice eq 'Y' || $userChoice eq 'y'){
+if($userChoice eq 'R' || $userChoice eq 'r'){
   ASKFORSIZE:
   print "Enter size of DNA: ";
   $baseLen = <STDIN>;
@@ -138,26 +141,27 @@ if($userChoice eq 'Y' || $userChoice eq 'y'){
     print "Your generated DNA has a length of ($baseLen) and is: \n$GenDNA\n";
   }
 }
-elsif($userChoice eq 'N' || $userChoice eq 'n'){
-  goto START;
+elsif($userChoice eq 'T' || $userChoice eq 't'){
+  #Storing the user DNA/mRNA sequence
+  if($baseLen > 9){
+    $entry = $GenDNA;
+  }
+  else {
+    print "Enter you DNA Sequence: \n";
+    $entry = <STDIN>;
+    chomp $entry;
+  }
+}
+elsif($userChoice eq 'G' || $userChoice eq 'g'){
+   print color("GREEN");
+   $entry = Genlib::gbRet->retrieve();
+   print color("RESET");
 }
 else {
   print "Please enter a right choice! \n";
   goto ASKTHEUSER;
 }
 
-
-START:
-#Storing the user DNA/mRNA sequence
-my $entry;
-if($baseLen > 9){
-  $entry = $GenDNA;
-}
-else {
-  print "Enter you DNA Sequence: \n";
-  $entry = <STDIN>;
-  chomp $entry;
-}
 my $dna = uc($entry);
 my $len = length($dna);
 my $ORFs_counter = 0; #Counter for ORFs
