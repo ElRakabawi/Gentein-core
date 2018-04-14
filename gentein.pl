@@ -139,6 +139,7 @@ if($userChoice eq 'R' || $userChoice eq 'r'){
       $GenDNA .= $bases[rand @bases];
     }
     print "Your generated DNA has a length of ($baseLen) and is: \n$GenDNA\n";
+    $entry = $GenDNA;
   }
 }
 elsif($userChoice eq 'T' || $userChoice eq 't'){
