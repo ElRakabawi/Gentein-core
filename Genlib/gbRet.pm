@@ -21,14 +21,11 @@ sub retrieve(){
 	  if ($feat -> primary_tag eq 'CDS'){ # Checking for CDS info
 	    print $feat -> get_tag_values('gene'),"\n";
 	    
-	    my $start = $feat->start;
-	    my $len   = $feat->length;
-	    my $cds = substr($sequence,$start-1,$len);
 	    use Text::Wrap;
 	    $Text::Wrap::columns = 71; #FASTA
-	    print wrap('', '', $cds, "\n");
+	    print wrap('', '', $sequence, "\n");
 
-	    return $cds;
+	    return $sequence;
 	  }
 	}
 }
