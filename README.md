@@ -7,6 +7,7 @@ A DNA to Protein sequence [six-frame translation](https://en.wikipedia.org/wiki/
 ## Installation
 * clone the repo using `git clone https://github.com/ElRakabawi/Gentein.git`
 * access the file with `cd Gentein-core`
+* Install cpanm and Bio::DB::GenBank `cpan App::cpanminus && cpanm Bio::DB::GenBank`
 * Run the program with `perl gentein.pl`
 
 <br />
